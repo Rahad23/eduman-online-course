@@ -47,7 +47,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/category"
                 aria-label="courses"
                 title="courses"
                 className="font-medium tracking-wide text-gray-600 transition-colors duration-200 hover:text-teal-accent-400 hover:text-slate-400"
@@ -82,9 +82,9 @@ const Header = () => {
             </li>
             <li onClick={click}>
                 {
-                    togle ? <CiLight className='text-3xl cursor-pointer'></CiLight> 
+                    togle ? <CiLight className='text-3xl cursor-pointer text-amber-900'></CiLight> 
                     :               
-                    <MdDarkMode className='text-3xl cursor-pointer'></MdDarkMode>
+                    <MdDarkMode className='text-3xl cursor-pointer text-black'></MdDarkMode>
                 }
 
 
