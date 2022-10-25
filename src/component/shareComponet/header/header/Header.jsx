@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../../img/logo/logo-black.png';
 import { CiLight} from 'react-icons/ci';
 import { MdDarkMode } from 'react-icons/md';
+import { userDocument } from '../../../../sheredApi/SheredApi';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,10 +13,12 @@ const Header = () => {
     const click=()=>{
         setTogle(!togle);
     }
-
+// user context
+const {userData} = useContext(userDocument);
+console.log(userData)
     return (
         
-        <div>
+        <div className='lg:sticky lg:top-0 z-50'>
 
 
 
@@ -78,11 +81,26 @@ const Header = () => {
           </ul>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
-                user document
+                {
+                    userData && userData?.uid? <div className='flex justify-between items-center'>
+                        <img  title={userData?.displayName} className='w-8 rounded-full' src={userData?.photoURL ? userData?.photoURL : 'https://imagez.tmz.com/image/d0/1by1/2022/09/16/d061305dc734448f95caeb0c10f0e614_xl.jpg'} alt="" />
+                        <p className='ml-1 text-black font-semibold'>{userData?.displayName}</p>
+                        <>
+                        <Link to={'/login'}>
+                        <button className="btn btn-xs ml-2">Logout</button>
+                    </Link>
+                        </>
+                    </div>
+                    :
+            <Link to={'/login'}>
+                 <button className="btn btn-sm">Login</button>
+             </Link>
+                }
+             
             </li>
             <li onClick={click}>
                 {
-                    togle ? <CiLight className='text-3xl cursor-pointer text-amber-900'></CiLight> 
+                    togle ? <CiLight className='text-3xl cursor-pointer text-amber-900 font-bold'></CiLight> 
                     :               
                     <MdDarkMode className='text-3xl cursor-pointer text-black'></MdDarkMode>
                 }
