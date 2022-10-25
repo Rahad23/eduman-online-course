@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../../../img/logo/logo-black.png';
 import { CiLight} from 'react-icons/ci';
 import { MdDarkMode } from 'react-icons/md';
@@ -14,7 +14,17 @@ const Header = () => {
         setTogle(!togle);
     }
 // user context
-const {userData} = useContext(userDocument);
+const {userData, userSingnOut} = useContext(userDocument);
+// use navigate
+const navigate = useNavigate();
+// user sign out
+const signOUt=()=>{
+    userSingnOut()
+    .then(() => {
+        navigate('/login');
+    })
+    .catch((error) => {});
+}
 console.log(userData)
     return (
         
@@ -86,9 +96,7 @@ console.log(userData)
                         <img  title={userData?.displayName} className='w-8 rounded-full' src={userData?.photoURL ? userData?.photoURL : 'https://imagez.tmz.com/image/d0/1by1/2022/09/16/d061305dc734448f95caeb0c10f0e614_xl.jpg'} alt="" />
                         <p className='ml-1 text-black font-semibold'>{userData?.displayName}</p>
                         <>
-                        <Link to={'/login'}>
-                        <button className="btn btn-xs ml-2">Logout</button>
-                    </Link>
+                          <button onClick={signOUt} className="btn btn-xs ml-2">Logout</button>
                         </>
                     </div>
                     :

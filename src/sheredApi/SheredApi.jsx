@@ -1,6 +1,6 @@
 import React from 'react';
 import { createContext, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import app from './../firebase/Firebase.init';
 import { useEffect } from 'react';
 
@@ -34,7 +34,11 @@ const SheredApi = ({children}) => {
         })
         return unsubscribe;
     },[])
-    const provider = {createUserEmailAndPassword, UpdateUser, sendEmailverify, userLogin, userData};
+    // suer sign out
+    const userSingnOut=()=>{
+        return signOut(auth);
+    }
+    const provider = {createUserEmailAndPassword, UpdateUser, sendEmailverify, userLogin, userData, userSingnOut};
 
     return (
         <userDocument.Provider value={provider}>
