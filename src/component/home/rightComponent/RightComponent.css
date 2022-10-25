@@ -1,0 +1,13 @@
+/* .rightbgimg{
+    background-image: url('../../../img/webImg/shape-03.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+} */
+
+@media (max-width: 576px) { 
+    .text-responsive{
+        line-height: 40px!important;
+    }
+    
+ }
