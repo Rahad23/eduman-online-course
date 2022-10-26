@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import BuyNow from "../component/course/buynow/BuyNow";
 import Category from "../component/course/category/Category";
 import ReadMore from "../component/course/readmore/ReadMore";
 import Home from "../component/home/Home";
@@ -42,8 +43,12 @@ export const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register></Register>
+            },
+            {
+                path: "/buynow/:id",
+                element: <BuyNow></BuyNow>,
+                loader: async({params})=>fetch(`http://localhost:5000/category/${params.id}`)
             }
-            
         ]
     }
 ])

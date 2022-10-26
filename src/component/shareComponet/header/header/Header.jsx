@@ -7,14 +7,8 @@ import { userDocument } from '../../../../sheredApi/SheredApi';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    // togle dark and light mode
-    const [togle, setTogle]=useState(true);
-    // create switch togle dark and light
-    const click=()=>{
-        setTogle(!togle);
-    }
 // user context
-const {userData, userSingnOut} = useContext(userDocument);
+const {userData, userSingnOut, click, togle} = useContext(userDocument);
 // use navigate
 const navigate = useNavigate();
 // user sign out
@@ -27,7 +21,6 @@ const signOUt=()=>{
 }
 console.log(userData)
     return (
-        
         <div className='lg:sticky lg:top-0 z-50'>
 
 

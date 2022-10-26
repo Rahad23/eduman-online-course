@@ -8,6 +8,12 @@ export const userDocument = createContext();
 
 const auth = getAuth(app);
 const SheredApi = ({children}) => {
+     // togle dark and light mode
+     const [togle, setTogle]=useState(true);
+     // create switch togle dark and light
+     const click=()=>{
+         setTogle(!togle);
+     }
     // user data
     const [userData, setUserData]= useState(null)
     // user register with email and password
@@ -38,7 +44,7 @@ const SheredApi = ({children}) => {
     const userSingnOut=()=>{
         return signOut(auth);
     }
-    const provider = {createUserEmailAndPassword, UpdateUser, sendEmailverify, userLogin, userData, userSingnOut};
+    const provider = {createUserEmailAndPassword, UpdateUser, sendEmailverify, userLogin, userData, userSingnOut, click, togle};
 
     return (
         <userDocument.Provider value={provider}>
