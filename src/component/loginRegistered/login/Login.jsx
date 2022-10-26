@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { userDocument } from '../../../sheredApi/SheredApi';
 import { toast } from 'react-toastify';
+import { BsFacebook, BsGithub } from 'react-icons/bs';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
     // togle show password 
@@ -12,7 +14,7 @@ const Login = () => {
         setShow(!show);
     }
     // use context 
-    const {userLogin} = useContext(userDocument);
+    const {userLogin, googleLogin} = useContext(userDocument);
 
   // use location
   const location = useLocation();
@@ -38,6 +40,31 @@ const navigate = useNavigate();
             toast.error(errorMessage);
           });
         console.log(email, password)
+    }
+
+    // Google popup login
+    const loginWithGoogle=()=>{
+      googleLogin()
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        navigate('/');
+        toast.success("Login success full");
+        // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
     }
 
     return (
@@ -75,6 +102,10 @@ const navigate = useNavigate();
           <button className="btn btn-primary" type='submit'>Login</button>
         </div>
      </form>
+     <p className='text-center'>OR</p>
+     <hr />
+     <button onClick={loginWithGoogle} className="btn btn-secondary"><BsFacebook className='text-2xl mr-2'></BsFacebook>Google</button>
+     <button className="btn bg-[#0e6cd8] hover:bg-[#034da1] border-0"><BsGithub className='text-2xl mr-2'></BsGithub>GitHub</button>
         <div className='mt-2'>
         <p className='text-slate-900 font-bold'>Don't have an account? <Link to={'/register'} className='text-[#f9a51a] label-text-alt link link-hover text-sm'>Create An Account</Link></p>
         </div>

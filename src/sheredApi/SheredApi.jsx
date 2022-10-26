@@ -1,6 +1,6 @@
 import React from 'react';
 import { createContext, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from './../firebase/Firebase.init';
 import { useEffect } from 'react';
 
@@ -8,6 +8,8 @@ export const userDocument = createContext();
 
 const auth = getAuth(app);
 const SheredApi = ({children}) => {
+
+    const GoogleProvider = new GoogleAuthProvider();
      // togle dark and light mode
      const [togle, setTogle]=useState(false);
      // create switch togle dark and light
@@ -46,11 +48,16 @@ const SheredApi = ({children}) => {
         })
         return unsubscribe;
     },[])
+    // user login with popup google
+    const googleLogin=()=>{
+        return signInWithPopup(auth, GoogleProvider);
+    }
+
     // suer sign out
     const userSingnOut=()=>{
         return signOut(auth);
     }
-    const provider = {createUserEmailAndPassword, UpdateUser, sendEmailverify, userLogin, userData, userSingnOut, click, togle, privetRedirect};
+    const provider = {createUserEmailAndPassword, UpdateUser, sendEmailverify, userLogin, userData, userSingnOut, click, togle, privetRedirect, googleLogin};
 
     return (
         <userDocument.Provider value={provider}>
