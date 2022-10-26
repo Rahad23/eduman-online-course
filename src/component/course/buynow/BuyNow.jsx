@@ -9,7 +9,7 @@ const BuyNow = () => {
     const {techer,subject,support,price} = data;
     return (
         <div className='flex justify-center items-center h-[700px]'>
-    <div className="card w-[700px] bg-base-100 shadow-xl">
+    <div className="card w-[700px] bg-base-100 shadow-xl p-7">
     <h1 className='text-3xl text-black font-semibold text-center mb-5'>Course details read carefully</h1>
         <div className="card-body">
             <div className='flex justify-between'>

@@ -9,7 +9,7 @@ export const userDocument = createContext();
 const auth = getAuth(app);
 const SheredApi = ({children}) => {
      // togle dark and light mode
-     const [togle, setTogle]=useState(true);
+     const [togle, setTogle]=useState(false);
      // create switch togle dark and light
      const click=()=>{
          setTogle(!togle);

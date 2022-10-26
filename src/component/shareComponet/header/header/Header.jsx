@@ -4,6 +4,7 @@ import logo from '../../../../img/logo/logo-black.png';
 import { CiLight} from 'react-icons/ci';
 import { MdDarkMode } from 'react-icons/md';
 import { userDocument } from '../../../../sheredApi/SheredApi';
+import logoWhite from '../../../../img/logo/footer-logo.png';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,7 +26,7 @@ console.log(userData)
 
 
 
-    <div className="bg-stone-300">
+    <div className={togle? "bg-slate-900":"bg-stone-300" }>
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center">
           <Link
@@ -36,7 +37,7 @@ console.log(userData)
           >
 
             <span className="ml-2 text-xl font-bold tracking-wide uppercase">
-                <img src={logo} className="w-30" alt="" />
+                <img src={togle? logoWhite : logo} className="w-30" alt="" />
             </span>
           </Link>
 <div className='flex justify-between w-full'>
@@ -66,7 +67,7 @@ console.log(userData)
                 to="/"
                 aria-label="FAQ"
                 title="FAQ"
-                className="font-medium tracking-wide text-gray-600 transition-colors duration-200 hover:text-teal-accent-400 hover:text-slate-400"
+              className="font-medium tracking-wide text-gray-600 transition-colors duration-200 hover:text-teal-accent-400 hover:text-slate-400"
               >
                 FAQ
               </Link>
@@ -87,7 +88,7 @@ console.log(userData)
                 {
                     userData && userData?.uid? <div className='flex justify-between items-center'>
                         <img  title={userData?.displayName} className='w-8 rounded-full' src={userData?.photoURL ? userData?.photoURL : 'https://imagez.tmz.com/image/d0/1by1/2022/09/16/d061305dc734448f95caeb0c10f0e614_xl.jpg'} alt="" />
-                        <p className='ml-1 text-black font-semibold'>{userData?.displayName}</p>
+                        <p className={togle ? 'ml-1 text-white font-semibold' : 'ml-1 text-black font-semibold'}>{userData?.displayName}</p>
                         <>
                           <button onClick={signOUt} className="btn btn-xs ml-2">Logout</button>
                         </>
@@ -101,7 +102,7 @@ console.log(userData)
             </li>
             <li onClick={click}>
                 {
-                    togle ? <CiLight className='text-3xl cursor-pointer text-amber-900 font-bold'></CiLight> 
+                    togle ? <CiLight className={togle ? 'text-3xl cursor-pointer text-white font-bold' : 'ml-1 text-black font-semibold'}></CiLight> 
                     :               
                     <MdDarkMode className='text-3xl cursor-pointer text-black'></MdDarkMode>
                 }
@@ -172,7 +173,11 @@ console.log(userData)
                           href="/"
                           aria-label="home"
                           title="home"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          className={
+                            togle ? "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400" 
+                            :
+                            "font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          }
                         >
                           Home
                         </a>
