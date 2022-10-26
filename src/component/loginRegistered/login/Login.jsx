@@ -6,7 +6,10 @@ import { userDocument } from '../../../sheredApi/SheredApi';
 import { toast } from 'react-toastify';
 import { BsFacebook, BsGithub } from 'react-icons/bs';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
-
+// import swal from 'sweetalert';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { async } from '@firebase/util';
 const Login = () => {
     // togle show password 
     const [show, setShow]=useState(true);
@@ -14,17 +17,48 @@ const Login = () => {
         setShow(!show);
     }
     // use context 
-    const {userLogin, googleLogin, gitHubLogin} = useContext(userDocument);
-
+    const {userLogin, googleLogin, gitHubLogin, passwordReset, userData} = useContext(userDocument);
+    // console.log(passwordReset);
   // use location
   const location = useLocation();
   const from = location?.state?.from.pathname || '/';
 const navigate = useNavigate();
+
+// get email hook 
+// foget password sweet alert
+
+const resetPassword= async(event)=>{
+  event.preventDefault();
+  const { value: email } = await Swal.fire({
+    title: 'Input email address',
+    input: 'email',
+    inputLabel: 'Your email address',
+    inputPlaceholder: 'Enter your email address'
+  })
+  if (email) {
+    passwordReset(email)
+    .then(() => {
+    Swal.fire(`Your email Address: ${email}`,"Check your email spam folder And reset your password");
+      // Password reset email sent!
+      // ..
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      toast.error(errorMessage);
+      // ..
+    });
+
+  }
+// console.log(email);
+}
     const loginUser = (event)=>{
         event.preventDefault();
         const target = event.target;
         const email = target.email.value;
         const password = target.password.value;
+        // set email
+        // setEmail(email);
         userLogin(email, password)
         .then((userCredential) => {
             // Signed in 
@@ -118,7 +152,7 @@ const navigate = useNavigate();
             </div>
          <div>
             <label className="label">
-                <Link to="#" className="label-text-alt link link-hover">Forgot password?</Link>
+                <Link onClick={resetPassword} to="#" className="label-text-alt link link-hover">Forgot password?</Link>
             </label>
          </div>
           </div>

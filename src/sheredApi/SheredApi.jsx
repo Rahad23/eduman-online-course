@@ -1,6 +1,6 @@
 import React from 'react';
 import { createContext, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from './../firebase/Firebase.init';
 import { useEffect } from 'react';
 
@@ -58,11 +58,29 @@ const SheredApi = ({children}) => {
 const gitHubLogin=()=>{
     return signInWithPopup(auth, Gitprovider);
 }
+// Password reset email
+const passwordReset=(email)=>{
+    return sendPasswordResetEmail(auth, email);
+}
     // suer sign out
     const userSingnOut=()=>{
         return signOut(auth);
     }
-    const provider = {createUserEmailAndPassword, UpdateUser, sendEmailverify, userLogin, userData, userSingnOut, click, togle, privetRedirect, googleLogin, gitHubLogin};
+    const provider = 
+{
+        createUserEmailAndPassword, 
+        UpdateUser, 
+        sendEmailverify, 
+        userLogin, 
+        userData, 
+        userSingnOut, 
+        click, 
+        togle, 
+        privetRedirect, 
+        googleLogin, 
+        gitHubLogin, 
+        passwordReset
+};
 
     return (
         <userDocument.Provider value={provider}>

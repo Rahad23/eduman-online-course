@@ -90,7 +90,7 @@ const Register = () => {
         </div>
      <div>
         <label className="label">
-            <Link to="#" className="label-text-alt link link-hover">Login</Link>
+            <Link to="/login" className="label-text-alt link link-hover">Login</Link>
         </label>
      </div>
       </div>

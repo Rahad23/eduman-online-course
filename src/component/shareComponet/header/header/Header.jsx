@@ -102,9 +102,9 @@ console.log(userData)
             </li>
             <li onClick={click}>
                 {
-                    togle ? <CiLight className={togle ? 'text-3xl cursor-pointer text-white font-bold' : 'ml-1 text-black font-semibold'}></CiLight> 
+                    togle ? <CiLight title="Light Mode" className={togle ? 'text-3xl cursor-pointer text-white font-bold' : 'ml-1 text-black font-semibold'}></CiLight> 
                     :               
-                    <MdDarkMode className='text-3xl cursor-pointer text-black'></MdDarkMode>
+                    <MdDarkMode title='Dark Mode' className='text-3xl cursor-pointer text-black'></MdDarkMode>
                 }
 
 
