@@ -89,7 +89,7 @@ console.log(userData)
             <ReactTooltip />
                 {
                     userData && userData?.uid? <div className='flex justify-between items-center'>
-                        <img  title={userData?.displayName} className='w-8 rounded-full' src={userData?.photoURL ? userData?.photoURL : 'https://imagez.tmz.com/image/d0/1by1/2022/09/16/d061305dc734448f95caeb0c10f0e614_xl.jpg'} alt="" />
+                        <img title={userData?.displayName} className='w-8 rounded-full' src={userData?.photoURL ? userData?.photoURL : 'https://imagez.tmz.com/image/d0/1by1/2022/09/16/d061305dc734448f95caeb0c10f0e614_xl.jpg'} alt="" />
                         <p className={togle ? 'ml-1 text-white font-semibold' : 'ml-1 text-black font-semibold'}>{userData?.displayName}</p>
                         <>
                           <button onClick={signOUt} className="btn btn-xs ml-2">Logout</button>
