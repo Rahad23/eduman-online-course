@@ -24,19 +24,19 @@ export const router = createBrowserRouter([
             {
                 path: '/category',
                 element: <Category></Category>,
-                loader: async()=>fetch('http://localhost:5000/category'),
+                loader: async()=>fetch('https://online-course-server-rahad23.vercel.app/category'),
                 children:[
                     {
                         path: '/category/:id',
                         element: <Course></Course>,
-                        loader: async({params})=>fetch(`http://localhost:5000/category/${params.id}`)
+                        loader: async({params})=>fetch(`https://online-course-server-rahad23.vercel.app/category/${params.id}`)
                     }
                 ]
             },
             {
                 path: '/readmore/:id',
                 element: <ReadMore></ReadMore>,
-                loader: async({params})=>fetch(`http://localhost:5000/category/${params.id}`)
+                loader: async({params})=>fetch(`https://online-course-server-rahad23.vercel.app/category/${params.id}`)
             },
             {
                 path: '/login',
@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
             {
                 path: "/buynow/:id",
                 element: <PrivetRoute><BuyNow></BuyNow></PrivetRoute>,
-                loader: async({params})=>fetch(`http://localhost:5000/category/${params.id}`)
+                loader: async({params})=>fetch(`https://online-course-server-rahad23.vercel.app/category/${params.id}`)
             },
             {
                 path: "/blog",
