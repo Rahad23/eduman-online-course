@@ -6,11 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import SheredApi from './sheredApi/SheredApi';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReactTooltip from 'react-tooltip';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <>
   <ToastContainer position="top-center"/>
+  <ReactTooltip />
   <React.StrictMode>
     <SheredApi>
       <App />
