@@ -1,6 +1,6 @@
 import React from 'react';
 import { createContext, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from './../firebase/Firebase.init';
 import { useEffect } from 'react';
 
@@ -10,6 +10,7 @@ const auth = getAuth(app);
 const SheredApi = ({children}) => {
 
     const GoogleProvider = new GoogleAuthProvider();
+    const Gitprovider = new GithubAuthProvider();
      // togle dark and light mode
      const [togle, setTogle]=useState(false);
      // create switch togle dark and light
@@ -17,7 +18,8 @@ const SheredApi = ({children}) => {
          setTogle(!togle);
      }
     // user data
-    const [userData, setUserData]= useState(null)
+    const [userData, setUserData]= useState('')
+     console.log(userData)
     // user redirect
     const [privetRedirect, setPrivetRedirect]=useState(true);
     // user register with email and password
@@ -53,11 +55,14 @@ const SheredApi = ({children}) => {
         return signInWithPopup(auth, GoogleProvider);
     }
 // user login github
+const gitHubLogin=()=>{
+    return signInWithPopup(auth, Gitprovider);
+}
     // suer sign out
     const userSingnOut=()=>{
         return signOut(auth);
     }
-    const provider = {createUserEmailAndPassword, UpdateUser, sendEmailverify, userLogin, userData, userSingnOut, click, togle, privetRedirect, googleLogin};
+    const provider = {createUserEmailAndPassword, UpdateUser, sendEmailverify, userLogin, userData, userSingnOut, click, togle, privetRedirect, googleLogin, gitHubLogin};
 
     return (
         <userDocument.Provider value={provider}>

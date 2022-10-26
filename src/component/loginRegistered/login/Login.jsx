@@ -5,7 +5,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { userDocument } from '../../../sheredApi/SheredApi';
 import { toast } from 'react-toastify';
 import { BsFacebook, BsGithub } from 'react-icons/bs';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
     // togle show password 
@@ -14,7 +14,7 @@ const Login = () => {
         setShow(!show);
     }
     // use context 
-    const {userLogin, googleLogin} = useContext(userDocument);
+    const {userLogin, googleLogin, gitHubLogin} = useContext(userDocument);
 
   // use location
   const location = useLocation();
@@ -66,6 +66,31 @@ const navigate = useNavigate();
         // ...
       });
     }
+    // gitHub popup login
+    const gitLogin=()=>{
+      gitHubLogin()
+      .then((result) => {
+        // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+        const credential = GithubAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+    
+        // The signed-in user info.
+        const user = result.user;
+        toast.success("Login success full");
+        navigate('/');
+        // ...
+      }).catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GithubAuthProvider.credentialFromError(error);
+        // ...
+      });
+    }
 
     return (
         <div>
@@ -105,7 +130,7 @@ const navigate = useNavigate();
      <p className='text-center'>OR</p>
      <hr />
      <button onClick={loginWithGoogle} className="btn btn-secondary"><BsFacebook className='text-2xl mr-2'></BsFacebook>Google</button>
-     <button className="btn bg-[#0e6cd8] hover:bg-[#034da1] border-0"><BsGithub className='text-2xl mr-2'></BsGithub>GitHub</button>
+     <button onClick={gitLogin} className="btn bg-[#0e6cd8] hover:bg-[#034da1] border-0"><BsGithub className='text-2xl mr-2'></BsGithub>GitHub</button>
         <div className='mt-2'>
         <p className='text-slate-900 font-bold'>Don't have an account? <Link to={'/register'} className='text-[#f9a51a] label-text-alt link link-hover text-sm'>Create An Account</Link></p>
         </div>

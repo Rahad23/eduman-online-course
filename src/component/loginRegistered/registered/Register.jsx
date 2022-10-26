@@ -19,13 +19,14 @@ const Register = () => {
         const email = target.email.value;
         const password = target.password.value;
         const userName = target.name.value;
+        const PhotoURL = target.photourl.value;
         createUserEmailAndPassword(email, password)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
             console.log(user);
             // set user name
-            hendleUpdateUser(userName);
+            hendleUpdateUser(userName, PhotoURL);
             sendEmailverify();
             target.reset();
             toast.success("User Create Success full, Check your email spam folder and verify your email address");
@@ -43,9 +44,10 @@ const Register = () => {
     }
 
     // Update user
-    const hendleUpdateUser = (userName) =>{
+    const hendleUpdateUser = (userName, PhotoURL) =>{
         const updateUser = {
          displayName: userName,
+         photoURL: PhotoURL,
         }
         UpdateUser(updateUser);
  }
@@ -63,6 +65,12 @@ const Register = () => {
         <span className="label-text">Name</span>
       </label>
       <input name='name' type="text" placeholder="name" className="input input-bordered" required/>
+    </div>
+    <div className="form-control">
+      <label className="label">
+        <span className="label-text">Photo URL</span>
+      </label>
+      <input name='photourl' type="text" placeholder="Photo-URL" className="input input-bordered" required/>
     </div>
  <div className="form-control">
       <label className="label">

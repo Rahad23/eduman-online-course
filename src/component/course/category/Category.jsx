@@ -5,7 +5,7 @@ const Category = () => {
   const categoryAll = useLoaderData();
   // console.log(categoryAll);
     return (
-        <div className='grid' style={{gridTemplateColumns: "1.5fr 4fr"}}>
+        <div className='lg:grid flex lg:flex-row flex-col' style={{gridTemplateColumns: "1.5fr 4fr"}}>
            <div className='p-5'>
            {
               categoryAll.map(cate=><Link to={cate.id}><button key={cate.id} className="btn btn-secondary w-full mb-1">{cate?.name}</button></Link>)
