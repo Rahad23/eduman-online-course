@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { userDocument } from '../../../sheredApi/SheredApi';
 import { useLoaderData } from 'react-router-dom';
-
+import swal from 'sweetalert';
 const BuyNow = () => {
     const {userData} = useContext(userDocument);
     // courseDetails
     const data = useLoaderData();
     const {techer,subject,support,price} = data;
+    const success=()=>{
+      swal("Course parses success full!", "Thanks for buying my course!", "success");
+    }
     return (
         <div className='flex justify-center items-center h-[700px]'>
     <div className="card w-[700px] bg-base-100 shadow-xl p-7">
@@ -48,7 +51,7 @@ const BuyNow = () => {
 
 </div>
         </div>
-        <h1 className='ml-10 mb-3 text-cyan-800 hover:text-red-700 cursor-pointer font-bold'><i>Payment-Now</i></h1>
+        <h1 className='ml-10 mb-3 text-cyan-800 hover:text-red-700 cursor-pointer font-bold'><i onClick={success}>Payment-Now</i></h1>
         </div>
         </div>
     );
