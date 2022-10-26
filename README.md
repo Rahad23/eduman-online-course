@@ -1,5 +1,5 @@
 ## What is this site?
-This site is an online course elated site
+This site is an online course related site
 
 ## What courses are offered here?
 This site teaches web development, software development, mobile application development.
