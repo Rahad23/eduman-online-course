@@ -52,7 +52,7 @@ const SheredApi = ({children}) => {
     const googleLogin=()=>{
         return signInWithPopup(auth, GoogleProvider);
     }
-
+// user login github
     // suer sign out
     const userSingnOut=()=>{
         return signOut(auth);
