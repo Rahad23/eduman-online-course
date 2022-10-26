@@ -74,7 +74,7 @@ console.log(userData)
             </li>
             <li>
               <Link
-                to="/"
+                to="/blog"
                 aria-label="blog"
                 title="blog"
                 className="font-medium tracking-wide text-gray-600 transition-colors duration-200 hover:text-teal-accent-400 hover:text-slate-400"
@@ -184,7 +184,7 @@ console.log(userData)
                       </li>
                       <li>
                         <a
-                          href="/"
+                          href="/category"
                           aria-label="course"
                           title="course"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -204,7 +204,7 @@ console.log(userData)
                       </li>
                       <li>
                         <a
-                          href="/"
+                          href="/blog"
                           aria-label="blog"
                           title="blog"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"

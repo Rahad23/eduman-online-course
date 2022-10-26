@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Blog from "../component/blog/Blog";
 import BuyNow from "../component/course/buynow/BuyNow";
 import Category from "../component/course/category/Category";
 import ReadMore from "../component/course/readmore/ReadMore";
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
                 path: "/buynow/:id",
                 element: <PrivetRoute><BuyNow></BuyNow></PrivetRoute>,
                 loader: async({params})=>fetch(`http://localhost:5000/category/${params.id}`)
+            },
+            {
+                path: "/blog",
+                element:<Blog></Blog>
             }
         ]
     }
