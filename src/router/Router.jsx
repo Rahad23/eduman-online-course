@@ -7,6 +7,7 @@ import Login from "../component/loginRegistered/login/Login";
 import Register from "../component/loginRegistered/registered/Register";
 import Main from "../component/main/Main";
 import ErrorPage from "../component/shareComponet/errorpage/ErrorPage";
+import PrivetRoute from "../privetRoute/PrivetRoute";
 import Course from './../component/course/Course';
 
 export const router = createBrowserRouter([
@@ -46,7 +47,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/buynow/:id",
-                element: <BuyNow></BuyNow>,
+                element: <PrivetRoute><BuyNow></BuyNow></PrivetRoute>,
                 loader: async({params})=>fetch(`http://localhost:5000/category/${params.id}`)
             }
         ]

@@ -16,26 +16,32 @@ const SheredApi = ({children}) => {
      }
     // user data
     const [userData, setUserData]= useState(null)
+    // user redirect
+    const [privetRedirect, setPrivetRedirect]=useState(true);
     // user register with email and password
     const createUserEmailAndPassword = (email, password)=>{
         return createUserWithEmailAndPassword(auth, email, password);
     }
     // update user
     const UpdateUser=(userProfile)=>{
+        setPrivetRedirect(true);
         return updateProfile(auth.currentUser, userProfile);
     }
     // send email verification
     const sendEmailverify = ()=>{
+        setPrivetRedirect(true);
         return sendEmailVerification(auth.currentUser);
     }
 
     // user login function set
     const userLogin=(email, password)=>{
+        setPrivetRedirect(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
     // tract user
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, user=>{
+            setPrivetRedirect(false);
             setUserData(user);
         })
         return unsubscribe;
@@ -44,7 +50,7 @@ const SheredApi = ({children}) => {
     const userSingnOut=()=>{
         return signOut(auth);
     }
-    const provider = {createUserEmailAndPassword, UpdateUser, sendEmailverify, userLogin, userData, userSingnOut, click, togle};
+    const provider = {createUserEmailAndPassword, UpdateUser, sendEmailverify, userLogin, userData, userSingnOut, click, togle, privetRedirect};
 
     return (
         <userDocument.Provider value={provider}>

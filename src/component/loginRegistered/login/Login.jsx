@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { userDocument } from '../../../sheredApi/SheredApi';
 import { toast } from 'react-toastify';
 
@@ -14,7 +14,9 @@ const Login = () => {
     // use context 
     const {userLogin} = useContext(userDocument);
 
-
+  // use location
+  const location = useLocation();
+  const from = location?.state?.from.pathname || '/';
 const navigate = useNavigate();
     const loginUser = (event)=>{
         event.preventDefault();
@@ -26,7 +28,8 @@ const navigate = useNavigate();
             // Signed in 
             const user = userCredential.user;
             toast.success("Login success full");
-            navigate('/');
+            // navigate('/');
+            navigate(from, {replace: true});
             // ...
           })
           .catch((error) => {
