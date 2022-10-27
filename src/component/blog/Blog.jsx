@@ -2,7 +2,7 @@ import React from 'react';
 
 const Blog = () => {
     return (
-        <div className='container mx-auto mt-32'>
+        <div className='container mx-auto mt-32 -z-50'>
             <div className="collapse rounded-xl mb-1">
                 <input type="checkbox" className="peer" /> 
                 <div className="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">

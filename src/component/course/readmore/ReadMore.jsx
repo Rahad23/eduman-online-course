@@ -36,10 +36,10 @@ const ReadMore = () => {
             {subject}
             </h2>
            <div>
-             <p className='text-black font-semibold'>Teacher: <span className='text-green-700 font-bold'>{techer}</span></p>
+             <p className='text-black font-semibold'>Teacher: <span className='text-green-700 lg:font-bold font-semibold'>{techer}</span></p>
            </div>
            <div>
-            <p className='text-[#000000] text-2xl font-bold'>Price: <span className='text-[#0772ca]'>${price}</span></p>
+            <p className='text-[#000000] text-lg lg:font-bold font-semibold'>Price: <span className='text-[#0772ca]'>${price}</span></p>
            </div>
             </div>
             <p>{details}</p>

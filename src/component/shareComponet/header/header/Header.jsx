@@ -113,7 +113,7 @@ console.log(userData)
             </li>
           </ul>
 </div>
-          <div className="lg:hidden">
+          <div className="lg:hidden z-50">
             <button
               aria-label="Open Menu"
               title="Open Menu"
@@ -216,7 +216,20 @@ console.log(userData)
                       </li>
                       <div className='flex'>
                       <li>
-                user document
+                      <ReactTooltip />
+                {
+                    userData && userData?.uid? <div className='flex justify-between items-center'>
+                        <img title={userData?.displayName} className='w-8 rounded-full' src={userData?.photoURL ? userData?.photoURL : 'https://imagez.tmz.com/image/d0/1by1/2022/09/16/d061305dc734448f95caeb0c10f0e614_xl.jpg'} alt="" />
+                        <p className={togle ? 'ml-1 text-black font-semibold' : 'ml-1 text-black font-semibold'}>{userData?.displayName}</p>
+                        <>
+                          <button onClick={signOUt} className="btn btn-xs ml-2">Logout</button>
+                        </>
+                    </div>
+                    :
+            <Link to={'/login'}>
+                 <button className="btn btn-sm">Login</button>
+             </Link>
+                }
             </li>
             <li onClick={click} className="ml-10">
                 {
