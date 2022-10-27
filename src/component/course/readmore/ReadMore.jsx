@@ -24,11 +24,11 @@ const ReadMore = () => {
     }
    
     return (
-        <div className='flex justify-center mt-24'>
-            <div>
+        <div className='flex justify-center lg:flex-row lg:items-start flex-col  mt-24'>
+            <div className='flex justify-center lg:w-24 w-full lg:mb-0 mb-5'>
               <button onClick={onButtonClick} className="btn btn-xs">Download</button>
             </div>
-            <div className="card w-[500px] bg-base-100 shadow-xl">
+            <div className="card lg:w-[500px] w-[370px] bg-base-100 shadow-xl justify-center mx-auto">
         <figure><img src={img} alt="Shoes" /></figure>
         <div className="card-body">
             <div className='flex justify-between items-center'>
