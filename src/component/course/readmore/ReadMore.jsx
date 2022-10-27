@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { Document, Page } from 'react-pdf';
+import Pdf from "react-to-pdf";
+const ref = React.createRef();
 const ReadMore = () => {
     const read = useLoaderData();
     const { img, price,support,techer,totalStudent,courseTime,subject,details, id} = read;
@@ -25,10 +27,10 @@ const ReadMore = () => {
    
     return (
         <div className='flex justify-center lg:flex-row lg:items-start flex-col  mt-24'>
-            <div className='flex justify-center lg:w-24 w-full lg:mb-0 mb-5'>
-              <button onClick={onButtonClick} className="btn btn-xs">Download</button>
-            </div>
-            <div className="card lg:w-[500px] w-[370px] bg-base-100 shadow-xl justify-center mx-auto">
+             <Pdf targetRef={ref} filename="code-example.pdf">
+        {({ toPdf }) => <button onClick={toPdf} className="btn btn-sm">Download-PDF</button>}
+      </Pdf>
+            <div className="card lg:w-[500px] w-[370px] bg-base-100 shadow-xl justify-center mx-auto" ref={ref}>
         <figure><img src={img} alt="Shoes" /></figure>
         <div className="card-body">
             <div className='flex justify-between items-center'>

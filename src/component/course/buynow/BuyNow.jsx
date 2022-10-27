@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { userDocument } from '../../../sheredApi/SheredApi';
 import { useLoaderData } from 'react-router-dom';
 import swal from 'sweetalert';
+import Pdf from "react-to-pdf";
+const ref = React.createRef();
 const BuyNow = () => {
     const {userData} = useContext(userDocument);
     // courseDetails
@@ -12,7 +14,10 @@ const BuyNow = () => {
     }
     return (
         <div className='flex justify-center items-center h-[700px]'>
-    <div className="card w-[700px] bg-base-100 shadow-xl p-7">
+    <div className="card w-[700px] bg-base-100 shadow-xl p-7" ref={ref}>
+    <Pdf targetRef={ref} filename="code-example.pdf">
+        {({ toPdf }) => <button onClick={toPdf} className="btn btn-sm w-40">Download-PDF</button>}
+      </Pdf>
     <h1 className='text-3xl text-black font-semibold text-center mb-5'>Course details read carefully</h1>
         <div className="card-body">
             <div className='flex justify-between'>
