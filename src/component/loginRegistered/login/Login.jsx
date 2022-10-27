@@ -24,9 +24,12 @@ const Login = () => {
   const from = location?.state?.from.pathname || '/';
 const navigate = useNavigate();
 
+// redyrect home page user available
+if(userData?.email && userData?.uid){
+    navigate('/');
+}
 // get email hook 
 // foget password sweet alert
-
 const resetPassword= async(event)=>{
   event.preventDefault();
   const { value: email } = await Swal.fire({
@@ -36,6 +39,7 @@ const resetPassword= async(event)=>{
     inputPlaceholder: 'Enter your email address'
   })
   if (email) {
+    event.preventDefault();
     passwordReset(email)
     .then(() => {
     Swal.fire(`Your email Address: ${email}`,"Check your email spam folder And reset your password");

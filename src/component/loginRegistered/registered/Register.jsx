@@ -10,8 +10,14 @@ const Register = () => {
         setShow(!show);
     }
     // use context 
-    const {createUserEmailAndPassword, UpdateUser, sendEmailverify}= useContext(userDocument);
+    const {createUserEmailAndPassword, UpdateUser, sendEmailverify, userData}= useContext(userDocument);
     const navigate = useNavigate();
+
+    // user available navigate home page
+    if(userData && userData?.email){
+      navigate('/');
+    }
+
     // register user
     const registerUser= (event)=>{
         event.preventDefault();
