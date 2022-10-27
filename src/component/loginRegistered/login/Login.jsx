@@ -39,7 +39,8 @@ const resetPassword= async(event)=>{
     inputPlaceholder: 'Enter your email address'
   })
   if (email) {
-    event.preventDefault();
+    console.log(email);
+    // event.preventDefault();
     passwordReset(email)
     .then(() => {
     Swal.fire(`Your email Address: ${email}`,"Check your email spam folder And reset your password");
@@ -134,7 +135,7 @@ const resetPassword= async(event)=>{
         <div>
             <div className="hero min-h-screen">
   <div className="hero-content flex-col">
-    <div className="card flex-shrink-0 w-[500px] max-w-sm shadow-2xl bg-base-100">
+    <div className="card flex-shrink-0 lg:w-[500px] w-400 max-w-sm shadow-2xl bg-base-100">
       <div className="card-body">
       <h1 className="text-2xl font-bold text-slate-800">Login now!</h1>
      <form onSubmit={loginUser}>
