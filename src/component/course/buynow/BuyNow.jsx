@@ -14,15 +14,16 @@ const BuyNow = () => {
     }
     return (
         <div className='flex justify-center items-center h-[700px]'>
-    <div className="card w-[700px] bg-base-100 shadow-xl p-7" ref={ref}>
+    <div className="card w-[700px] bg-base-100 shadow-xl p-7">
     <Pdf targetRef={ref} filename="code-example.pdf">
-        {({ toPdf }) => <button onClick={toPdf} className="btn btn-sm w-40">Download-PDF</button>}
+        {({ toPdf }) => <button onClick={toPdf} className="btn btn-sm bg-red-500 border-0 w-40 mb-3">Download-PDF</button>}
       </Pdf>
-    <h1 className='text-3xl text-black font-semibold text-center mb-5'>Course details read carefully</h1>
+      <div ref={ref}>
+      <h1 className='text-3xl text-black lg:font-semibold font-medium text-center lg:mb-5'>Course details read carefully</h1>
         <div className="card-body">
-            <div className='flex justify-between'>
+            <div className='flex lg:justify-between flex-col'>
             <div>
-            <h2 className="card-title">
+            <h2 className="card-title font-semibold">
                 Name: <span className='text-emerald-600'>{userData?.displayName}</span>
             </h2>
             </div>
@@ -56,6 +57,8 @@ const BuyNow = () => {
 
 </div>
         </div>
+      </div>
+
         <h1 className='ml-10 mb-3 text-cyan-800 hover:text-red-700 cursor-pointer font-bold'><i onClick={success}>Payment-Now</i></h1>
         </div>
         </div>
